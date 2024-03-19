@@ -1,0 +1,37 @@
+<div class="container">
+    <div>
+        <h1 class="text-center">Product List</h1>
+        <a [routerLink]="['/products/create']"  class="btn btn-success" >Create</a>
+    </div>
+    <br>
+    <table datatable [dtOptions] = "dtoptions" class="table table-striped">
+        <thead>
+            <tr>
+                <th>Product Code</th>
+                <th>Name</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th width="250px">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+           
+                @for (item of data; track item.id) {
+                    <tr>
+                        <td>{{item.productCode}}</td>
+                        <td>{{item.productName}}</td>
+                        <td>{{item.quantity}}</td>
+                        <td>{{item.productPrice}}</td>
+                        <td>
+                            <a routerLink='' class="btn btn-info"><i class="fa-solid fa-pen-to-square"></i>View</a>
+                            <a routerLink='/products/edit/{{item.id}}' class="btn btn-success"><i class="fa-regular fa-pen-to-square"></i>Edit</a>
+                            <button class="btn btn-danger" (click)="deleteProduct($event,item.id)" >Delete</button>
+                        </td>
+                    </tr>
+                } @empty {
+                Empty list of users
+                }
+            
+        </tbody>
+    </table>
+</div>
